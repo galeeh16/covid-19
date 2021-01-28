@@ -23,14 +23,33 @@ const CoronaProvider = (props) => {
     }
 
     const getDataPerToday = async () => {
-        await axios.get('https://indonesia-covid-19.mathdro.id/api')
+        // await axios.get('https://indonesia-covid-19.mathdro.id/api')
+        // .then(
+        //     (response) => {
+        //         let data = {
+        //             meninggal: response.data.meninggal,
+        //             sembuh: response.data.sembuh,
+        //             perawatan: response.data.perawatan,
+        //             jumlahKasus: response.data.jumlahKasus
+        //         }
+        //         setDataToday(data)
+        //     },
+        //     (error) => {
+        //         console.log(error)
+        //     }
+        // )
+        // .catch(err => {
+        //     console.log(err)
+        // })
+        
+        await axios.get('https://covid19.mathdro.id/api/countries/Indonesia')
         .then(
             (response) => {
                 let data = {
-                    meninggal: response.data.meninggal,
-                    sembuh: response.data.sembuh,
-                    perawatan: response.data.perawatan,
-                    jumlahKasus: response.data.jumlahKasus
+                    meninggal: response.data.deaths.value,
+                    sembuh: response.data.recovered.value,
+                    perawatan: 'ngga tau',
+                    jumlahKasus: response.data.confirmed.value
                 }
                 setDataToday(data)
             },
